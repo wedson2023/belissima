@@ -1,0 +1,23 @@
+<ion-view title="Lista produtos" id="page11">
+  <ion-nav-buttons side="right" class="has-header">
+    <button ng-click="ctrl.verBtnDeletar()" class="button button-icon icon ion-trash-a"></button>
+    <button class="button button-icon icon ion-android-exit"></button>
+  </ion-nav-buttons>
+  <ion-content padding="true" class="has-header">
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Digite um cliente" ng-model="pesquisar">
+    </label>
+    <ion-list>
+      <ion-item ng-click="ctrl.quantidade(produtos)" ng-repeat="produtos in ctrl.produtos | filter : pesquisar">       
+        <span class="capitalize" ng-bind="produtos.descricao"></span>       
+         <span class="badge badge-assertive" ng-bind="produtos.quantidade"></span>     
+         <ion-delete-button ng-click="ctrl.deletar(produtos)" class="ion-minus-circled"></ion-delete-button>
+      </ion-item>
+    </ion-list>
+    <div id="listaProdutos-button-bar1" class="button-bar">
+      <button id="listaProdutos-button14" ng-click="ctrl.limpar()" class="button button-positive button-block icon-left ion-trash-a">Remover</button>
+      <button ng-click="ctrl.pedido()" id="listaProdutos-button15" class="button button-dark button-block icon-left ion-android-create">Continuar</button>
+    </div>
+  </ion-content>
+</ion-view>
