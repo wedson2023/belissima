@@ -4,9 +4,19 @@ angular.module('app.controllers', [])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	console.log('entrou');
+	var self = this;
 
+	self.logar = function(usuario){
 
+		if(usuario.senha == 7715){
+			localStorage.setItem('representante', usuario.nome);
+			if(localStorage.getItem('representante')){
+				location.href = '#/produtos';
+			}
+		}else{
+			alert('Senha incorreta tente novamente!');
+		}		
+	}
 }])
    
 .controller('listaProdutosCtrl', ['$scope', '$stateParams', '$ionicListDelegate',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -108,5 +118,41 @@ function ($scope, $stateParams) {
 	self.produtos.forEach(function(elemento){
 		self.total += elemento.valor * elemento.quantidade
 	});
+
+	var total = self.total;
+
+	self.parcelas = [];
+
+	var i = 1;
+	while(i <= 6){
+		var valor = ( total / i).toString();
+		self.parcelas.push(i + 'x - ' + valor.substr(0, valor.indexOf('.') + 3) + ' Reais');
+		i++;
+	}
+
+	self.lstDescontos = [2, 3, 4, 5 ];
+	self.desconto = function(desconto){
+		self.total = total - ( desconto / 100 * total );
+	}
+
+	self.campodesconto = true;
+	self.parcelar = function(parcela){
+		console.log(parcela)
+		if(parcela != null){
+			self.total = 0;
+			self.produtos.forEach(function(elemento){
+				self.total += elemento.valor * elemento.quantidade
+			});
+
+			self.pctdesconto = [ 2, 3, 4, 5 ];
+			self.campodesconto = false;
+		}else{
+			self.campodesconto = true;
+		}	
+	}
+
+	self.enviar = function(){
+
+	}
 }])
  

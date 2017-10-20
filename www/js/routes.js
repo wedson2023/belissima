@@ -11,7 +11,7 @@ angular.module('app.routes', [])
     .state('login', {
     url: '/',
     templateUrl: 'templates/login.html',
-    controller: 'loginCtrl'
+    controller: 'loginCtrl as ctrl'
   })
 
   .state('listaProdutos', {

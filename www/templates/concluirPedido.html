@@ -42,26 +42,17 @@
           <p style="margin-top:0px;color:#000000;">Informações pedido</p>
         </div>
       </div>
-      <form id="concluirPedido-form11" class="list">
-        <label class="item item-select" id="concluirPedido-select3">
+      <form class="list">
+        <label class="item item-select">
           <span class="input-label">Forma de pagamento</span>
-          <select>
-            <option>À vista</option>
-            <option>1x - 100 Reais</option>
-            <option>2x - 100 Reais</option>
-            <option>3x - 100 Reais</option>
-            <option>4x - 100 Reais</option>
-            <option>5x - 100 Reais</option>
-            <option>6x - 100 Reais</option>
+          <select ng-model="parcela" ng-change="ctrl.parcelar(parcela)" ng-options="parcela for parcela in ctrl.parcelas">
+            <option value="">À vista</option>
           </select>
         </label>
-        <label class="item item-select" id="concluirPedido-select4">
+        <label ng-if="ctrl.campodesconto" class="item item-select">
           <span class="input-label">Desconto</span>
-          <select>
-            <option>Sem desconto</option>
-            <option>3 por cento</option>
-            <option>4 por cento</option>
-            <option>5 por cento</option>
+          <select ng-model="ctrl.pctdesconto" ng-change="ctrl.desconto(ctrl.pctdesconto)" ng-options="porcento + ' por cento' for porcento in ctrl.lstDescontos">
+            <option value="">Sem desconto</option>
           </select>
         </label>
         <ion-item ng-repeat="produtos in ctrl.produtos">
@@ -70,12 +61,12 @@
         <span class="badge badge-assertive" ng-bind="produtos.valor | currency : ''">
         </ion-item>
         <ion-item>
-          <strong>Total:</strong>  <span class="badge badge-assertive" ng-bind="ctrl.total | currency : 'R$ '"></span></ion-item>
+          <strong>Total a pagar:</strong>  <span class="badge badge-assertive" ng-bind="ctrl.total | currency : 'R$ '"></span></ion-item>
       </form>
     </div>
     <div id="concluirPedido-button-bar2" class="button-bar">
-      <button class="button button-assertive button-block icon-left ion-ios-trash">Remover</button>
-      <button class="button button-positive button-block icon-left ion-android-send">Enviar</button>
+      <button class="button button-positive button-block icon-left ion-ios-trash">Remover</button>
+      <button class="button button-dark button-block icon-left ion-android-send">Enviar</button>
     </div>
   </ion-content>
 </ion-view>

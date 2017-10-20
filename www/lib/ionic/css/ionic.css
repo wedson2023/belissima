@@ -8491,8 +8491,7 @@ input:checked + .checkbox-icon:after {
     text-overflow: '';
     white-space: nowrap;
     font-size: 14px;
-    cursor: pointer;
-    direction: rtl; }
+    cursor: pointer; }
   .item-select select::-ms-expand {
     display: none; }
   .item-select option {
